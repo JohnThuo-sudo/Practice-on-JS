@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Theme Toggle</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                color: #333;
+                text-align: center;
+                padding: 50px;
+            }
+
+            .dark-mode {
+                background-color: #121212;
+                color: #f0f0f0;
+            }
+
+            .light-mode {
+                background-color: #ffffff;
+                color: #121212;
+            }
+
+            h1 {
+                margin-bottom: 20px;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            a {
+                font-size: 24px;;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Learn how to change theme for light to dark</h1>
+        <ul id="themeToggle">
+            <li><a><i id="sun" class="fa-solid fa-sun"></i></a></li>
+            <li><a><i id="moon" class="fa-solid fa-moon"></i></a></li>
+        </ul>
+    <script src="https://kit.fontawesome.com/1e84583d15.js" crossorigin="anonymous"></script>
+    </body>
+    <script>
+        const toggleBtn = document.getElementById('themeToggle');
+        const body = document.body;
+        const sunIcon = document.getElementById('sun');
+        const moonIcon = document.getElementById('moon');
+
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme) {
+            body.classList.add(savedTheme);
+        } else  {
+            body.classList.add('light-mode');
+        }
+        
+        if (body.classList.contains('light-mode')) {
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'inline';
+} else {
+    sunIcon.style.display = 'inline';
+    moonIcon.style.display = 'none';
+}
+
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+
+            if (body.classList.contains('light-mode')) {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline';
+            } else {
+                sunIcon.style.display = 'inline';
+                moonIcon.style.display = 'none';
+            }
+
+            const currentTheme = body.classList.contains('dark-mode') ?  'dark-mode' : 'light-mode';
+
+            localStorage.setItem('theme', currentTheme);
+        });
+    </script>
+</html>
