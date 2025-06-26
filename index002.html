@@ -52,7 +52,7 @@
     let tasks = [];
 
     // Load saved tasks from localStorage
-    window.addEventListener('onload', () => {
+    window.addEventListener('DOMContentLoaded', () => {
         const saved = localStorage.getItem('tasks');
         if (saved) {
             tasks = JSON.parse(saved);
@@ -89,10 +89,19 @@
       span.textContent = task.text;
       span.style.cursor = 'pointer';
 
+      const check = document.createElement('input');
+      check.type = 'checkbox';
+      check.checked = task.completed;
+
       if (task.completed) {
         span.classList.add('done');
       }
 
+      check.addEventListener('change', () => {
+        task.completed = check.checked;
+        span.classList.toggle('done', task.completed);
+        saveTasks();
+      });
       const delBtn = document.createElement('button');
       delBtn.textContent = '🗑️';
       delBtn.style.marginLeft = '10px';
@@ -103,6 +112,7 @@
         saveTasks();
       });
 
+      li.appendChild(check);
       li.appendChild(span);
       li.appendChild(delBtn);
       list.appendChild(li);
