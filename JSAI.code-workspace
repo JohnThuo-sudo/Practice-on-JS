@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../JSAI"
+		},
+		{
+			"path": "../../Plutus"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "WEB dev"
+	}
+}
